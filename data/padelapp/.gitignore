@@ -1,4 +1,3 @@
-data/db/
 /.phpunit.cache
 /node_modules
 /public/build
