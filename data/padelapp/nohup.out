@@ -1,0 +1,23 @@
+
+> dev
+> vite
+
+
+  VITE v5.4.11  ready in 221 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+  LARAVEL v11.35.0  plugin v1.1.1
+
+  ➜  APP_URL: http://localhost
+5:09:22 AM [vite] full reload routes/console.php
+5:16:17 AM [vite] full reload routes/web.php
+5:22:54 AM [vite] full reload resources/views/auth/passwords/reset.blade.php
+5:22:54 AM [vite] full reload resources/views/auth/passwords/confirm.blade.php
+5:22:54 AM [vite] full reload resources/views/auth/passwords/email.blade.php
+5:22:56 AM [vite] full reload resources/views/home.blade.php
+5:36:31 AM [vite] full reload routes/web.php
+5:37:04 AM [vite] full reload routes/web.php
+5:47:13 AM [vite] full reload resources/views/auth/login.blade.php
+5:55:26 AM [vite] full reload resources/views/layouts/app.blade.php
