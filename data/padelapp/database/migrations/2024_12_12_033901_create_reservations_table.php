@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->integer('court_number');
-            $table->dateTime('reservation_date');
-            $table->integer('duration');
-            $table->enum('status', ['available', 'active', 'cancelled', 'finished'])->default('available');
-            $table->timestamps();
-        });
+            $table->id(); // ID único para la reserva
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ID del usuario que realiza la reserva
+            $table->enum('court_number', ['1', '2']); // Número de pista
+            $table->dateTime('start_time'); // Hora de inicio de la reserva
+            $table->integer('duration_minutes'); // Duración de la reserva en minutos (90, 120, etc.)
+            $table->enum('status', ['free', 'cancelled', 'filled'])->default('free'); // Estado de la reserva
+            $table->timestamps(); // Marcas de tiempo (created_at, updated_at)
+        });        
     }
 
     /**

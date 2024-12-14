@@ -1,87 +1,69 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <!-- Header con opciones de contacto y mis reservas -->
-        <div class="d-flex justify-content-between">
-            <div>
-                <a href="{{ route('contact') }}" class="text-blue-500 hover:underline">Contacto</a> |
-                <a href="{{ route('my-reservations') }}" class="text-blue-500 hover:underline">Mis Reservas</a>
-            </div>
-            <div>
-                <span>Bienvenido, {{ Auth::user()->name }}</span> |
-                <a href="{{ route('profile.edit') }}" class="text-blue-500 hover:underline">Perfil</a> |
-                <a href="{{ route('logout') }}" class="text-blue-500 hover:underline" 
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-        </div>
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<div class="home-page container">
+    <h1 class="page-title">BIENVENIDO A PÁDEL SH, RESERVA TU PISTA</h1>
 
-        <hr>
+    <!-- Mensaje de éxito -->
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
-        <h1>Reserva tu pista</h1>
-
-        <!-- Mensaje de éxito -->
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <!-- Formulario para hacer una nueva reserva -->
-        <form action="{{ route('reserve.store') }}" method="POST">
-            @csrf
-
-            <div class="form-group">
-                <label for="court_number">Selecciona el número de la pista:</label>
-                <input type="number" name="court_number" id="court_number" class="form-control" min="1" max="10" required>
-            </div>
-
-            <div class="form-group">
-                <label for="reservation_date">Fecha y hora de la reserva:</label>
-                <input type="datetime-local" name="reservation_date" id="reservation_date" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="duration">Duración (horas):</label>
-                <input type="number" name="duration" id="duration" class="form-control" min="1" max="2" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Hacer reserva</button>
-        </form>
-
-        <hr>
-
-        <!-- Mostrar las reservas disponibles -->
-        <h3>Reservas disponibles</h3>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Número de Pista</th>
-                    <th>Fecha y Hora</th>
-                    <th>Duración (horas)</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($reservations as $reservation)
-                    <tr>
-                        <td>{{ $reservation->court_number }}</td>
-                        <td>{{ \Carbon\Carbon::parse($reservation->reservation_date)->format('d/m/Y H:i') }}</td>
-                        <td>{{ $reservation->duration }}</td>
-                        <td>{{ ucfirst($reservation->status) }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <!-- Botones de días de la semana -->
+    <div id="day-buttons" class="day-buttons">
+        <button class="day-btn" data-day="0">Sábado</button>
+        <button class="day-btn" data-day="1">Domingo</button>
+        <button class="day-btn" data-day="2">Lunes</button>
+        <button class="day-btn" data-day="3">Martes</button>
+        <button class="day-btn" data-day="4">Miércoles</button>
+        <button class="day-btn" data-day="5">Jueves</button>
+        <button class="day-btn" data-day="6">Viernes</button>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-4 mt-4">
-        <p>2024 © Todos los derechos reservados</p>
-        <a href="{{ route('terms') }}" class="text-white hover:underline">Condiciones de uso</a> | 
-        <a href="{{ route('privacy') }}" class="text-white hover:underline">Política de privacidad</a>
-    </footer>
+    <div id="week-selector">
+        <button id="prev-week-btn">Anterior</button>
+        <span id="current-week"></span>
+        <button id="next-week-btn">Siguiente</button>
+    </div>
+    
+    <!-- Contenedor de reservas -->
+    <div id="reserves-container" class="cpt-1">
+        <div id="dayheader" class="panel panel-default">
+            <div class="titlefont" id="current-day-header"></div>
+            <div id="day" class="day-cal_week table-responsive table-top-level">
+                <!-- Pista 1 -->
+                <div class="r-court">
+                    <div class="text-center">
+                        <h5 class="court title text-truncate" title="PISTA 1">
+                            <small class="badge badge-green hidden" id="current-badge-1"></small> PISTA 1
+                        </h5>
+                    </div>
+                    <div class="court_reserves">
+                        <div class="inner_court_reserves" id="time-slots-1">
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de Pista 1 -->
+                <!-- Pista 2 -->
+                <div class="r-court">
+                    <div class="text-center">
+                        <h5 class="court title text-truncate" title="PISTA 2">
+                            <small class="badge badge-green hidden" id="current-badge-2"></small> PISTA 2
+                        </h5>
+                    </div>
+                    <div class="court_reserves">
+                        <div class="inner_court_reserves" id="time-slots-2">
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de Pista 2 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('js/home.js') }}"></script>
 @endsection

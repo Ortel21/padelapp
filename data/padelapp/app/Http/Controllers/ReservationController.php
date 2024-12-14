@@ -3,62 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function showReservationForm(Request $request)
     {
-        //
+        $courtId = $request->input('court');
+        $startTime = \Carbon\Carbon::parse($request->input('start'))->setTimezone('Europe/Madrid');
+        $endTime = \Carbon\Carbon::parse($request->input('end'))->setTimezone('Europe/Madrid');
+        $durationMinutes = $startTime->diffInMinutes($endTime);
+
+        // session(['durationMinutes' => $durationMinutes]);
+
+        return view('reserve')->with([
+            'courtId' => $courtId,
+            'startTime' => $startTime,
+            'endTime' => $endTime,
+            'durationMinutes' => $durationMinutes,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'court_number' => 'required|in:1,2',
+            'reservation_date' => 'required|date',
+            'time_slot' => 'required',
+            'duration' => 'required|integer',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $startTime = new \DateTime($request->reservation_date . ' ' . explode(' - ', $request->time_slot)[0]);
+        $durationMinutes = $request->duration;
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        Reservation::create([
+            'user_id' => Auth::id(),
+            'court_number' => $request->court_number,
+            'start_time' => $startTime,
+            'duration_minutes' => $durationMinutes,
+            'status' => 'free',
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('my-reservations')->with('success', 'Reserva realizada con éxito.');
     }
 }

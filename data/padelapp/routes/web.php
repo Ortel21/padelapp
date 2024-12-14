@@ -28,7 +28,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
     });
 
-    Route::resource('reserve', ReservationController::class)->only(['store', 'index', 'create']);
+    Route::get('/reserve', [ReservationController::class, 'showReservationForm'])->name('reserve');
+    Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
+
+    Route::get('/cal_week', [ReservationController::class, 'getWeeklyReservations'])->name('cal_week');
 
     Route::get('/contact', function () {
         return view('contact');

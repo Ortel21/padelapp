@@ -1,0 +1,133 @@
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Medium.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+/* General */
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navbar principal */
+.navbar {
+    background-color: #112230;
+    color: #fff;
+    padding: 15px 20px;
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 80px; /* Aumentar el tamaño del logo */
+    margin-right: 15px;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center; /* Asegura que el logo y el nombre estén alineados correctamente */
+}
+
+.app-name-container {
+    display: table-cell;
+    vertical-align: middle; /* Alinea el nombre verticalmente al centro */
+    padding-left: 10px; /* Añadir un pequeño espacio entre el logo y el nombre */
+}
+
+.app-name {
+    font-size: 22px; /* Ajustar el tamaño */
+    font-weight: bold;
+    color: #fff;
+}
+
+.user-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.navbar-user {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea los botones a la derecha */
+}
+
+/* Opciones de usuario */
+.navbar-bottom {
+    display: flex;
+    align-items: flex-end; /* Alinea los botones a la derecha */
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.profile-btn,
+.logout-btn {
+    text-decoration: none;
+    color: #ffff;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #2e3f4d;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.profile-btn:hover,
+.logout-btn:hover {
+    background-color: #2e3f4d;
+    color: #ffff;
+}
+
+/* Submenu de navegación */
+.submenu {
+    background-color: #000;
+    padding: 10px 20px;
+}
+
+.submenu-list {
+    display: flex;
+    justify-content: flex-start; /* Pegado a la izquierda */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.submenu-list li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.submenu-list li a:hover {
+    text-decoration: underline;
+    color: #ff9a03;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: #112230;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.footer a {
+    color: #ff9a03;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
