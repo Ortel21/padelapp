@@ -25,7 +25,6 @@
                     <span class="user-name">{{ Auth::user()->name }} {{ Auth::user()->surname }}</span>
                     <br>
                     <div class="navbar-bottom d-flex flex-column align-items-end mt-2">
-                        <a href="{{ route('profile.edit') }}" class="profile-btn">Perfil</a>
                         <a href="{{ route('logout') }}" class="logout-btn" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -40,8 +39,7 @@
     <div class="submenu">
         <ul class="submenu-list">
             <li><a href="{{ route('home') }}">Inicio</a></li>
-            <li><a href="{{ route('my-reservations') }}">Mis Reservas</a></li>
-            <li><a href="{{ route('contact') }}">Contacto</a></li>
+            <li><a href=#>Contacto</a></li>
         </ul>
     </div>
 
@@ -53,8 +51,8 @@
     <!-- Footer -->
     <footer class="footer">
         <p>2024 © Todos los derechos reservados</p>
-        <a href="{{ route('terms') }}">Condiciones de uso</a> |
-        <a href="{{ route('privacy') }}">Política de privacidad</a>
+        <a href=#>Condiciones de uso</a> |
+        <a href=#>Política de privacidad</a>
     </footer>
 
 </body>

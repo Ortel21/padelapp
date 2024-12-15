@@ -9,13 +9,15 @@ class Reservation extends Model
     protected $fillable = [
         'user_id',
         'court_number',
-        'reservation_date',
-        'duration',
+        'start_time',
+        'duration_minutes',
         'status',
     ];
 
+    public $timestamps = false;
+
     protected $casts = [
-        'reservation_date' => 'datetime',
+        'start_time' => 'datetime', // convierte carbon recordar
     ];
 
     public function user()

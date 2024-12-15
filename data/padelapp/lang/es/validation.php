@@ -14,7 +14,13 @@ return [
     */
 
     
-    
+        "Verify Email Address" => "Verificar direccion de correo electronico",
+        "Hello!" => "¡Hola!",
+        "Regards" => "Saludos",
+        "If you're having trouble clicking the" => "Si estas teniendo problemas presionando el",
+        "button, copy and paste the URL below into your web browser" => "copia y pega la siguiente URL en tu navegador",
+        "Please click the button below to verify your email address." => "Por favor presiona el botón de abajo para verificar tu direccion de correo electronico",
+        "If you did not create an account, no further action is required." => "Si no has creado esta cuenta, ponte en contacto con gerencia lo antes posible",
         "accepted" => "El campo :attribute debe ser aceptado.",
         "accepted_if" => "El campo :attribute debe ser aceptado cuando :other sea :value.",
         "active_url" => "El campo :attribute debe ser una URL válida.",

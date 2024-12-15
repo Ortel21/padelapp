@@ -17,18 +17,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // Dashboard para todos los usuarios autenticados
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
 
-    // Rutas exclusivas para administradores
-    Route::middleware(['role:admin'])->group(function () {
-        Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-        Route::get('/admin/manage-tracks', [AdminController::class, 'manageTracks'])->name('admin.manage-tracks');
-        Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
-    });
+    // // Rutas exclusivas para administradores
+    // Route::middleware(['role:admin'])->group(function () {
+    //     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+    //     Route::get('/admin/manage-tracks', [AdminController::class, 'manageTracks'])->name('admin.manage-tracks');
+    //     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
+    // });
 
     Route::get('/reserve', [ReservationController::class, 'showReservationForm'])->name('reserve');
+    Route::get('/api/reservations', [ReservationController::class, 'fetchReservations']);
     Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
 
     Route::get('/cal_week', [ReservationController::class, 'getWeeklyReservations'])->name('cal_week');
@@ -48,10 +49,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/privacy', function () {
         return view('privacy');
     })->name('privacy');
-
-    Route::get('/my-reservations', function () {
-        return view('my-reservations');
-    })->name('my-reservations');
 });
 
 // Rutas adicionales

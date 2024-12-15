@@ -5,14 +5,12 @@
 <div class="home-page container">
     <h1 class="page-title">BIENVENIDO A PÁDEL SH, RESERVA TU PISTA</h1>
 
-    <!-- Mensaje de éxito -->
     @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
     @endif
 
-    <!-- Botones de días de la semana -->
     <div id="day-buttons" class="day-buttons">
         <button class="day-btn" data-day="0">Sábado</button>
         <button class="day-btn" data-day="1">Domingo</button>
@@ -29,12 +27,11 @@
         <button id="next-week-btn">Siguiente</button>
     </div>
     
-    <!-- Contenedor de reservas -->
     <div id="reserves-container" class="cpt-1">
         <div id="dayheader" class="panel panel-default">
             <div class="titlefont" id="current-day-header"></div>
             <div id="day" class="day-cal_week table-responsive table-top-level">
-                <!-- Pista 1 -->
+                <!-- pista 1 -->
                 <div class="r-court">
                     <div class="text-center">
                         <h5 class="court title text-truncate" title="PISTA 1">
@@ -46,8 +43,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin de Pista 1 -->
-                <!-- Pista 2 -->
+                <!-- pista 1 -->
+                <!-- pista 2 -->
                 <div class="r-court">
                     <div class="text-center">
                         <h5 class="court title text-truncate" title="PISTA 2">
@@ -59,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Fin de Pista 2 -->
+                <!-- pista 2 -->
             </div>
         </div>
     </div>

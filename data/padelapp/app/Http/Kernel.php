@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Console\Scheduling\Schedule;
+use App\Jobs\SendReservationReminderJob;
 
 class Kernel extends HttpKernel
 {
@@ -62,4 +64,10 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
+
+    protected function schedule(Schedule $schedule, $reservation)
+    {
+        $schedule->job(new SendReservationReminderJob($reservation))
+            ->at($reservation->start_time->subMinutes(20));
+    }
 }
